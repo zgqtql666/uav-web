@@ -1,0 +1,148 @@
+server:
+  port: 6789
+
+spring:
+  devtools:
+    restart:
+      enabled: true  # Enable hot deployment
+  freemarker:
+    cache: false    # Disable cache for freemarker templates for immediate changes reflection
+
+  main:
+    allow-bean-definition-overriding: true
+
+  application:
+    name: cloud-api-sample
+
+  datasource:
+    druid:
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/cloud_sample?useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: zgq13543080064
+      initial-size: 10
+      min-idle: 10
+      max-active: 20
+      max-wait: 60000
+
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+
+  servlet:
+    multipart:
+      max-file-size: 2GB
+      max-request-size: 2GB
+
+jwt:
+  issuer: DJI
+  subject: CloudApiSample
+  secret: CloudApiSample
+  age: 86400
+
+mqtt:
+  # @see com.dji.sample.component.mqtt.model.MqttUseEnum
+  # BASIC parameters are required.
+  BASIC:
+    protocol: MQTT # @see com.dji.sample.component.mqtt.model.MqttProtocolEnum
+    host: localhost #修改
+    port: 1883
+    username: JavaServer
+    password: 123456
+    client-id: 123456
+    # If the protocol is ws/wss, this value is required.
+    path:
+  DRC:
+    protocol: WS # @see com.dji.sample.component.mqtt.model.MqttProtocolEnum
+    host: Please enter your ip.
+    port: 8083
+    path: /mqtt
+    username: JavaServer
+    password: 123456
+
+cloud-sdk:
+  mqtt:
+    # Topics that need to be subscribed when initially connecting to mqtt, multiple topics are divided by ",".
+    inbound-topic: sys/product/+/status,thing/product/+/requests
+
+url:
+  manage:
+    prefix: manage
+    version: /api/v1
+  map:
+    prefix: map
+    version: /api/v1
+  media:
+    prefix: media
+    version: /api/v1
+  wayline:
+    prefix: wayline
+    version: /api/v1
+  storage:
+    prefix: storage
+    version: /api/v1
+  control:
+    prefix: control
+    version: /api/v1
+
+# Tutorial: https://www.alibabacloud.com/help/en/object-storage-service/latest/use-a-temporary-credential-provided-by-sts-to-access-oss
+oss:
+  enable: false
+  provider: ALIYUN # @see com.dji.sample.component.OssConfiguration.model.enums.OssTypeEnum
+  endpoint: https://oss-cn-hangzhou.aliyuncs.com
+  access-key: Please enter your access key.
+  secret-key: Please enter your secret key.
+  expire: 3600
+  region: Please enter your oss region. # cn-hangzhou
+  role-session-name: cloudApi
+  role-arn: Please enter your role arn. # acs:ram::123456789:role/stsrole
+  bucket: Please enter your bucket name.
+  object-dir-prefix: Please enter a folder name.
+
+#oss:
+#  enable: true
+#  provider: aws
+#  endpoint: https://s3.us-east-1.amazonaws.com
+#  access-key:
+#  secret-key:
+#  expire: 3600
+#  region: us-east-1
+#  role-session-name: cloudApi
+#  role-arn:
+#  bucket: cloudapi-bucket
+#  object-dir-prefix: wayline
+
+#oss:
+#  enable: true
+#  provider: minio
+#  endpoint: http://192.168.1.1:9000
+#  access-key: minioadmin
+#  secret-key: minioadmin
+#  bucket: cloud-bucket
+#  expire: 3600
+#  region: us-east-1
+#  object-dir-prefix: wayline
+
+logging:
+  level:
+    com.dji: debug
+  file:
+    name: logs/cloud-api-sample.log
+
+ntp:
+  server:
+    host: Google.mzr.me
+
+# To create a license for an application: https://developer.dji.com/user/apps/#all
+cloud-api:
+  app:
+    id: 141907
+    key: 6779983c283b16f04da55ae8f078e7f
+    license: Lg+pM2j1X6MPtiX6ZiZvDB3T3ZcGjcXOeI7t02SUPBS3DjFnccjDNOQ/sFtvhQIG8elM6UCoAGGWlUxjbB02Tk77mUh6E+Iwl7yw727aUTpqRExBJidIcT9prnK2mxsdC5sEkXCJILwnC3rcl8uWzMC9uMNgWY57L+KckVvPqng=
