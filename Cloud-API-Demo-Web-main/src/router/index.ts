@@ -9,7 +9,7 @@ import LiveOthers from '/@/components/livestream-others.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/' + ERouterName.PROJECT
+    redirect: '/' + ERouterName.PROJECT// 改：redirect: '/' + ERouterName.PROJECT
   },
   // 首页
   {

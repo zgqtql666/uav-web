@@ -4,11 +4,14 @@ import path from 'path'
 import { ConfigEnv, defineConfig, UserConfigExport } from 'vite'
 import ViteComponents, { AntDesignVueResolver } from 'vite-plugin-components'
 // Introduce eslint plugin
-import eslintPlugin from 'vite-plugin-eslint'
+import eslintPlugin from 'vite-plugin-eslint' 
 import OptimizationPersist from 'vite-plugin-optimize-persist'
 import PkgConfig from 'vite-plugin-package-config'
 import viteSvgIcons from 'vite-plugin-svg-icons'
 import { viteVConsole } from 'vite-plugin-vconsole'
+// 按需加载
+import styleImport from 'vite-plugin-style-import'
+import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfigExport => defineConfig({
@@ -41,17 +44,17 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => defineConfig(
   ],
   server: {
     open: true,
-    host: '0.0.0.0',
-    port: 8080,
+    host: '0.0.0.0', 
+    port: 8081, //前端服务器的端口
     //修改
     proxy: {
         '/api': {
-            target: 'http://localhost:6789',
+            target: 'http://localhost:6789', //改target: 'http://localhost:6789',
             ws: true,
             changeOrigin: true,
             rewrite: (path) => path.replace(/^\/api/, '')
        },
-    }
+    } 
   },
 
   envDir: './env',
@@ -73,8 +76,23 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => defineConfig(
     }
   },
   base: '/',
+  // build: {
+  //   target: ['es2015'], // 最低支持 es2015
+  //   sourcemap: true
+  // }
   build: {
-    target: ['es2015'], // 最低支持 es2015
-    sourcemap: true
+    chunkSizeWarningLimit:1500,
+    rollupOptions: {
+        output:{
+            manualChunks(id) {
+              if (id.includes('node_modules')) {
+                
+                  return id.toString().split('node_modules/')[1].split('/')[0].toString();
+              }
+          }
+        }
+    }
   }
 })
+
+

@@ -7,7 +7,7 @@
       style="width: 17vw; height: 17vw; margin-bottom: 50px"
       :src="gdutLogo"
     />
-    <p class="fz35 pb50" style="color: #dae4f0">gdut揭阳无人机项目组</p>
+    <p class="fz35 pb50" style="color: #dae4f0">云集千翼</p>
     <a-form
       layout="inline"
       :model="formState"
@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts" setup>
-import gdutLogo from '/@/assets/icons/gdut.png'
+import gdutLogo from '/@/assets/icons/上云白.png'
 import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { message } from 'ant-design-vue'
 import { reactive, computed, UnwrapRef } from 'vue'

@@ -2,9 +2,9 @@
   <div class="login flex-column flex-justify-center flex-align-center m0 b0">
     <a-image
       style="width: 17vw; height: 10vw; margin-bottom: 50px"
-      :src="djiLogo"
+      :src="gdutLogo"
     />
-    <p class="logo fz35 pb50">Pilot Cloud API Demo</p>
+    <p class="logo fz35 pb50">无人机上云端</p>
     <a-form
       layout="inline"
       :model="formState"
@@ -33,7 +33,7 @@
           class="m0"
           type="primary"
           html-type="submit"
-          :disabled="formState.user === '' || formState.password === ''"
+          :disabled="formState.username === '' || formState.password === ''"
           @click="onSubmit"
         >
           Login
@@ -53,7 +53,7 @@ import { getRoot } from '/@/root'
 import router from '/@/router'
 import { EComponentName, ELocalStorageKey, ERouterName, EUserType } from '/@/types'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
-import djiLogo from '/@/assets/icons/dji_logo.png'
+import gdutLogo from '/@/assets/icons/上云白.png'
 
 const root = getRoot()
 

@@ -1,5 +1,5 @@
 server:
-  port: 6789
+  port: 6789 #port: 6789
 
 spring:
   devtools:
@@ -18,17 +18,18 @@ spring:
     druid:
       type: com.alibaba.druid.pool.DruidDataSource
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/cloud_sample?useSSL=false&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://localhost/cloud_sample?useSSL=false&allowPublicKeyRetrieval=true #修改
       username: root
-      password: zgq13543080064
+      password: zgq13543080064 #zgq13543080064 #改：网站的是：Zgq13543080064.
       initial-size: 10
       min-idle: 10
       max-active: 20
       max-wait: 60000
 
   redis:
-    host: localhost
+    host: localhost #修改
     port: 6379
+#    password: gdut@@376409 #password: zgq13543080064 #改：本地才去掉，服务器则加上
     database: 0
     lettuce:
       pool:
@@ -52,7 +53,7 @@ mqtt:
   # BASIC parameters are required.
   BASIC:
     protocol: MQTT # @see com.dji.sample.component.mqtt.model.MqttProtocolEnum
-    host: localhost #修改
+    host: localhost #修改 写上遥控器可以访问的地址
     port: 1883
     username: JavaServer
     password: 123456
@@ -61,7 +62,7 @@ mqtt:
     path:
   DRC:
     protocol: WS # @see com.dji.sample.component.mqtt.model.MqttProtocolEnum
-    host: Please enter your ip.
+    host: localhost #修改
     port: 8083
     path: /mqtt
     username: JavaServer

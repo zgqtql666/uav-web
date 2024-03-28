@@ -43,7 +43,7 @@ import { getRoot } from '/@/root'
 import { getPlatformInfo } from '/@/api/manage'
 import { ELocalStorageKey, ERouterName } from '/@/types'
 import { UserOutlined, ExportOutlined } from '@ant-design/icons-vue'
-import gdutLogo from '/@/assets/icons/gdut.png'
+import gdutLogo from '/@/assets/icons/上云白.png'
 
 const root = getRoot()
 
