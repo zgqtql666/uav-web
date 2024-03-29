@@ -45,7 +45,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => defineConfig(
   server: {
     open: true,
     host: '0.0.0.0', 
-    port: 8081, //前端服务器的端口
+    port: 8081, 
     //修改
     proxy: {
         '/api': {
