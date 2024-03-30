@@ -20,7 +20,7 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://localhost/cloud_sample?useSSL=false&allowPublicKeyRetrieval=true #修改
       username: root
-      password: zgq13543080064 #zgq13543080064 #改：网站的是：Zgq13543080064.
+      password: Zgq13543080064. #zgq13543080064 #改：网站的是：Zgq13543080064.
       initial-size: 10
       min-idle: 10
       max-active: 20
@@ -29,7 +29,7 @@ spring:
   redis:
     host: localhost #修改
     port: 6379
-    #password: gdut@@376409 #password: zgq13543080064 #改：本地才去掉，服务器则加上
+    password: gdut@@376409 #password: zgq13543080064 #改：本地才去掉，服务器则加上
     database: 0
     lettuce:
       pool:
@@ -54,7 +54,7 @@ mqtt:
   BASIC:
     protocol: MQTT # @see com.dji.sample.component.mqtt.model.MqttProtocolEnum
     host: localhost #修改 写上遥控器可以访问的地址
-    port: 1883 #网站上1885
+    port: 1885 #网站上1885
     username: JavaServer
     password: 123456
     client-id: 123456

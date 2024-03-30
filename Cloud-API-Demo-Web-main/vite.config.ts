@@ -49,7 +49,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => defineConfig(
     //修改
     proxy: {
         '/api': {
-            target: 'http://localhost:6789', //改target: 'http://localhost:6789',
+            target: 'http://159.75.183.27:6789', //改target: 'http://localhost:6789',
             ws: true,
             changeOrigin: true,
             rewrite: (path) => path.replace(/^\/api/, '')
