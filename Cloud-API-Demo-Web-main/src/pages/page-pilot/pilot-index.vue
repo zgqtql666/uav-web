@@ -94,7 +94,6 @@ onMounted(async () => {
   }
 })
 const onSubmit = async (e: any) => {
-  debugger // 测
   await login(formState)
     .then(res => {
       if (!isVerified.value) {
