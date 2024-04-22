@@ -58,7 +58,7 @@ import gdutLogo from '/@/assets/icons/上云白.png'
 const root = getRoot()
 
 const formState: UnwrapRef<LoginBody> = reactive({
-  username: 'pilot',
+  username: '30機場',
   password: 'pilot123',
   flag: EUserType.Pilot,
 })
@@ -94,6 +94,7 @@ onMounted(async () => {
   }
 })
 const onSubmit = async (e: any) => {
+  debugger // 测
   await login(formState)
     .then(res => {
       if (!isVerified.value) {
@@ -140,7 +141,7 @@ function verifyLicense () {
 <style lang="scss" scoped>
 @import '/@/styles/index.scss';
 .login {
-  // background-color: $dark-highlight;
+  background-color: black;
   height: 100vh;
 }
 .logo {

@@ -37,7 +37,7 @@ public class JwtUtil {
         JwtUtil.subject = subject;
     }
 
-    @Value("${jwt.age: 86400}")
+    @Value("${jwt.age: 8640000}")
     private void setAge(long age) {
         JwtUtil.age = age * 1000;
     }

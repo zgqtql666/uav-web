@@ -17,6 +17,7 @@ module.exports = {
     'no-unused-vars': 'off',
     camelcase: 'off',
     'no-redeclare': 'off',
-    'vue/no-unused-components': 'off'
+    'vue/no-unused-components': 'off',
+    'no-debugger': 'off'
   }
 }

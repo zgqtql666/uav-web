@@ -56,11 +56,12 @@ import { login, LoginBody } from '/@/api/manage'
 import { getRoot } from '/@/root'
 import { ELocalStorageKey, ERouterName, EUserType } from '/@/types'
 import router from '/@/router'
+import { consoleLog } from '/@/utils/logger'
 
 const root = getRoot()
 
 const formState: UnwrapRef<LoginBody> = reactive({
-  username: 'adminPC',
+  username: '18号机', // 测
   password: 'adminPC',
   flag: EUserType.Web,
 })
