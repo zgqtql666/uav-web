@@ -15,6 +15,10 @@
           </template>
         </div>
       </template>
+      <!--新添加的功能：一键起飞-->
+      <template #fly="{ record }">
+        <a-button @click="() => sendMessage(record)">一键起飞</a-button>
+      </template>
       <template #action="{ record }">
         <div class="editable-row-operations">
           <span v-if="editableData[record.user_id]">
@@ -42,6 +46,7 @@ import { IPage } from '/@/api/http/type'
 import { getAllUsersInfo, updateUserInfo } from '/@/api/manage'
 import { ELocalStorageKey } from '/@/types'
 import { EditOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons-vue'
+import MQTT from 'mqtt/dist/mqtt.min'
 
 export interface Member {
     user_id: string
@@ -63,6 +68,7 @@ const columns = [
   { title: 'Mqtt Username', dataIndex: 'mqtt_username', width: 150, className: 'titleStyle', slots: { customRender: 'mqtt_username' } },
   { title: 'Mqtt Password', dataIndex: 'mqtt_password', width: 150, className: 'titleStyle', slots: { customRender: 'mqtt_password' } },
   { title: 'Joined', dataIndex: 'create_time', width: 150, sorter: (a: Member, b: Member) => a.create_time.localeCompare(b.create_time), className: 'titleStyle' },
+  { title: 'Fly', dataIndex: 'fly', width: 100, className: 'titleStyle', slots: { customRender: 'fly' } }, // 新添加的：一键起飞功能
   { title: 'Action', dataIndex: 'action', width: 100, className: 'titleStyle', slots: { customRender: 'action' } },
 ]
 
@@ -104,6 +110,52 @@ const workspaceId: string = localStorage.getItem(ELocalStorageKey.WorkspaceId)!
 onMounted(() => {
   getAllUsers(workspaceId, body)
 })
+
+// 维护 MQTT 客户端的引用
+const sendMessage = (record:Member) => {
+  const topic = 'fly'
+  const message = 'fly'
+  // 建立连接
+  const client: MQTT.MqttClient = MQTT.connect('ws://8.138.56.168:1885', {
+    username: 'admin', // 用户名
+    password: 'admin', // 密码
+  })
+
+  // 当连接成功时执行
+  client.on('connect', () => {
+    console.log('Connected to MQTT broker')
+
+    // 发布消息到指定主题
+    client.publish(topic, message, (err) => {
+      if (err) {
+        console.log('Publish error:', err)
+      } else {
+        console.log(`Message published to topic ${topic}`)
+      }
+    })
+  })
+
+  // 处理重连事件
+  client.on('reconnect', () => {
+    console.log('Reconnecting...')
+  })
+
+  // 处理错误事件
+  client.on('error', (error) => {
+    console.log('MQTT connection error:', error)
+  })
+
+  // 如果已经连接，直接发送消息
+  client.on('connect', () => {
+    client.publish(topic, message, (err) => {
+      if (err) {
+        console.log('Publish error:', err)
+      } else {
+        console.log(`Message published to topic ${topic}`)
+      }
+    })
+  })
+}
 
 function refreshData (page: Pagination) {
   body.page = page?.current!
