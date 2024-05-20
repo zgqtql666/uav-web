@@ -1,6 +1,10 @@
 <template>
   <div class="flex-column flex-justify-start flex-align-center">
-    <div id="player" style="width: 720px; height: 420px; border: 1px solid"></div>
+    <!-- <div id="player" style="width: 720px; height: 420px; border: 1px solid"></div> -->
+    <!-- 添加：为了适配读取http视频流资源 -->
+    <div id="player" style="width: 720px; height: 420px; border: 1px solid">
+      <img v-if="livePara.liveState" :src="httpStreamUrl" style="width: 100%; height: 100%;" />
+    </div>
     <p class="fz24">Live streaming source selection</p>
     <div class="flex-row flex-justify-center flex-align-center mt10">
       <template v-if="livePara.liveState && dronePara.isDockLive">
@@ -85,8 +89,11 @@
       ></a-input>
     </div>
     <div class="mt20 flex-row flex-justify-center flex-align-center">
-      <a-button v-if="livePara.liveState && dronePara.isDockLive" type="primary" large @click="onSwitch">Switch Lens</a-button>
-      <a-button v-else type="primary" large @click="onStart">Play</a-button>
+      <!-- <a-button v-if="livePara.liveState && dronePara.isDockLive" type="primary" large @click="onSwitch">Switch Lens</a-button> -->
+      <!-- <a-button v-else type="primary" large @click="onStart">Play</a-button> -->
+      <!-- 添加：为了适配读取http视频流资源 -->
+      <a-button type="primary" large @click="playHttpStream">Play</a-button>
+
       <a-button class="ml20" type="primary" large @click="onStop"
         >Stop</a-button
       >
@@ -103,6 +110,7 @@
 <script lang="ts" setup>
 import AgoraRTC, { IAgoraRTCClient, IAgoraRTCRemoteUser } from 'agora-rtc-sdk-ng'
 import { message } from 'ant-design-vue'
+import { truncateSync } from 'fs'
 import { onMounted, reactive } from 'vue'
 import { uuidv4 } from '../utils/uuid'
 import { CURRENT_CONFIG as config } from '/@/api/http/config'
@@ -110,6 +118,14 @@ import { changeLivestreamLens, getLiveCapacity, setLivestreamQuality, startLives
 import { getRoot } from '/@/root'
 
 const root = getRoot()
+
+// 添加：HTTP 视频流资源 URL
+const httpStreamUrl = 'http://8.138.56.168:8012/?action=stream'
+
+// 添加：为了适配读取http视频流资源
+const playHttpStream = () => {
+  livePara.liveState = true
+}
 
 const clarityList = [
   {

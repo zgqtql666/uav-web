@@ -9,18 +9,19 @@
         'menu-item': true,
       }"
     >
-    <a-button
-      class="mt10"
-      style="width:100%;"
-      type="primary"
-      @click="selectLivestream(item.routeName)"
-      >{{ item.label }}</a-button
-    >
+      <a-button
+        class="mt10"
+        style="width:100%;"
+        type="primary"
+        @click="selectLivestream(item.routeName)"
+      >{{ item.label }}</a-button>
     </router-link>
   </div>
   <div class="live" v-if="showLive" v-drag-window>
     <div style="height: 40px; width: 100%" class="drag-title"></div>
-    <a style="position: absolute; right: 10px; top: 10px; font-size: 16px; color: white;" @click="() => root.$router.push('/' + ERouterName.LIVESTREAM)"><CloseOutlined /></a>
+    <a style="position: absolute; right: 10px; top: 10px; font-size: 16px; color: white;" @click="() => root.$router.push('/' + ERouterName.LIVESTREAM)">
+      <CloseOutlined />
+    </a>
     <router-view :name="routeName" />
   </div>
 </template>
@@ -31,6 +32,7 @@ import { onMounted, ref, watch } from 'vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
 import { getRoot } from '/@/root'
 import { ERouterName } from '/@/types'
+
 const root = getRoot()
 const routeName = ref<string>('LiveOthers')
 const showLive = ref<boolean>(root.$route.name === ERouterName.LIVING)
@@ -78,7 +80,6 @@ onMounted(() => {
   left: 0;
   top: 10px;
   margin-left: 345px;
-
   text-align: center;
   width: 800px;
   height: 720px;
