@@ -116,7 +116,7 @@ const sendMessage = (record:Member) => {
   const topic = 'fly'
   const message = 'fly'
   // 建立连接
-  const client: MQTT.MqttClient = MQTT.connect('ws://8.138.56.168:1885', {
+  const client: MQTT.MqttClient = MQTT.connect('ws://202.116.144.161:1886', {
     username: 'admin', // 用户名
     password: 'admin', // 密码
   })

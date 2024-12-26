@@ -120,7 +120,7 @@ import { getRoot } from '/@/root'
 const root = getRoot()
 
 // 添加：HTTP 视频流资源 URL
-const httpStreamUrl = 'http://8.138.56.168:8012/?action=stream'
+const httpStreamUrl = 'http://202.116.144.161:8012/?action=stream'
 
 // 添加：为了适配读取http视频流资源
 const playHttpStream = () => {

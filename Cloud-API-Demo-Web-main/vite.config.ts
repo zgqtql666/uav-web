@@ -50,7 +50,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => defineConfig(
     proxy: {
         '/api': {
             // target: 'http://159.75.183.27:6789', //改target: 'http://localhost:6789',
-            target: 'http://8.138.56.168:6789',
+            target: 'http://119.29.247.126:6789',//主机内部不需要映射端口
             ws: true,
             changeOrigin: true,
             rewrite: (path) => path.replace(/^\/api/, '') 

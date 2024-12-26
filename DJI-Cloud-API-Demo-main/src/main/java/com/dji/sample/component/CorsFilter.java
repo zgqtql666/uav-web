@@ -21,7 +21,7 @@ public class CorsFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         HttpServletResponse res = (HttpServletResponse) response;
         res.addHeader("Access-Control-Allow-Credentials", "true");
-        res.addHeader("Access-Control-Allow-Origin", "http://8.138.56.168");
+        res.addHeader("Access-Control-Allow-Origin", "http://119.29.247.126");//要改
         res.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
         res.addHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers," +
                 "Authorization, Content-Length, X-CSRF-Token, Token,session,X_Requested_With,Accept, "+
